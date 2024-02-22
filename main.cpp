@@ -316,8 +316,32 @@ int choiceResolve(int i)
 	return 0;
 }
 
+/*
+int textHandler(int i, bool o)
+{
+	std::string menuLineOne[14] =
+	{
+		"6"," ","="," ","E","x","i","t"," ","G","a","m","e","."
+	};
+
+	int step = 0;
+	bool menuText = o;
 
 
+	if (menuText == true)
+	{
+		step = 0;
+		for (int x = 2; x < 14; x++)
+		{
+			
+			screen[3][x] = menuLineOne[step];
+			step++;
+		}
+	}
+	
+	return 0;
+}
+*/
 
 int main()
 {
@@ -335,6 +359,12 @@ int main()
 		int screenHeight = 30;
 		int screenWidth = 80;
 
+		//Text Step
+		int step = 0;
+		std::string menuLineOne[14] =
+		{
+			"6"," ","="," ","E","x","i","t"," ","G","a","m","e","."
+		};
 	
 
 
@@ -359,11 +389,19 @@ int main()
 		sidePanel.showSelf();
 		hud.showSelf();
 		menu.showSelf();
+		
+		
 
 		//This is the actual play area of the world, view.
 		if (gameMenu == true)
 		{
 			mainScreen.showSelf();
+			for (int x = 3; x < 16; x++)
+			{
+
+				screen[3][x] = menuLineOne[step];
+				step++;
+			}
 		}
 		else
 		{
@@ -375,6 +413,7 @@ int main()
 					screen[y][x] = world[y + (globalY - 1)][x + (globalX - 1)];
 				}
 			}
+			
 		}
 		
 
@@ -392,10 +431,11 @@ int main()
 
 
 		//Handles moving the Global X and Y in the switch, will need to account for player and collision on world also.
-		std::cout << " [1 = Left, 2 = Down, 3 = Up, 4 = Right, 5 = Menu] Pick a direction: ";
+		std::cout << " [1 = Left, 2 = Down, 3 = Up, 4 = Right, 5 = Menu] Make a Selection: ";
 		std::cin >> playerChoice;
 
 		choiceResolve(playerChoice);
+		
 
 	}
 	
